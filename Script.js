@@ -17,25 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        // Update aria-expanded for accessibility
-        const expanded = hamburger.classList.contains('active');
-        hamburger.setAttribute('aria-expanded', expanded);
+        navLinks.classList.toggle('active'); // Toggle display of nav links
+        const expanded = hamburger.classList.toggle('active'); // Optionally animate the hamburger icon
+        hamburger.setAttribute('aria-expanded', expanded); // Update aria attribute for accessibility
     });
 
     /* ---------------- Generic Carousel Functionality ---------------- */
     function setupCarousel(carouselSelector, dotsSelector, intervalTime = 4000) {
-        const carousel = document.querySelector(${carouselSelector} .carousel-wrapper);
-        const slides = document.querySelectorAll(${carouselSelector} .carousel-slide);
-        const dots = document.querySelectorAll(${dotsSelector} .carousel-dot);
+        const carousel = document.querySelector(`${carouselSelector} .carousel-wrapper`);
+        const slides = document.querySelectorAll(`${carouselSelector} .carousel-slide`);
+        const dots = document.querySelectorAll(`${dotsSelector} .carousel-dot`);
         const totalSlides = slides.length;
         let currentIndex = 1; // Start from 1 because 0 is the clone of the last slide
         let isTransitioning = false;
         let slideInterval;
 
         // Initialize carousel position
-        carousel.style.transform = translateX(-${currentIndex * 100}%);
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
 
         // Update active dot
         function updateDots() {
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isTransitioning) return;
             isTransitioning = true;
             carousel.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            carousel.style.transform = translateX(-${index * 100}%);
+            carousel.style.transform = `translateX(-${index * 100}%)`;
             currentIndex = index;
             updateDots();
         }
@@ -61,12 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentIndex === 0) {
                 carousel.style.transition = 'none';
                 currentIndex = totalSlides - 2;
-                carousel.style.transform = translateX(-${currentIndex * 100}%);
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
                 updateDots();
             } else if (currentIndex === totalSlides - 1) {
                 carousel.style.transition = 'none';
                 currentIndex = 1;
-                carousel.style.transform = translateX(-${currentIndex * 100}%);
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
                 updateDots();
             }
         });
@@ -111,42 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const carouselSection = document.querySelector(carouselSelector);
         carouselSection.addEventListener('mouseenter', stopSlideShow);
         carouselSection.addEventListener('mouseleave', startSlideShow);
-
-        // Touch/Swipe Support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carouselSection.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        carouselSection.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        });
-
-        function handleGesture() {
-            const swipeDistance = touchStartX - touchEndX;
-            if (swipeDistance > 50) { // Swipe left
-                nextSlide();
-            }
-            if (swipeDistance < -50) { // Swipe right
-                prevSlide();
-            }
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-                stopSlideShow();
-                startSlideShow();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                stopSlideShow();
-                startSlideShow();
-            }
-        });
     }
 
     /* ---------------- Initialize Carousels ---------------- */
