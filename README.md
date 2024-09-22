@@ -1,3 +1,3 @@
-# ([sparkmyorg.github.io])
+# [sparkmyorg.github.io]
 # ^
 # SPARK's website #
