@@ -798,13 +798,13 @@ footer:hover {
     gap: 10px;
 }
 
-.footer-social a img.footer-ig-icon {
+.footer-social a img {
     width: 30px;
     height: 30px;
     transition: transform 0.3s ease;
 }
 
-.footer-social a img.footer-ig-icon:hover {
+.footer-social a img:hover {
     transform: scale(1.2);
 }
 
