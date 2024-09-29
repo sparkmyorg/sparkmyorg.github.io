@@ -34,7 +34,7 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #E0F7FA; /* Lighter cyan */
+    background-image: linear-gradient(90deg, #7EC9E7, #2B64CB, #A7D0F2);
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
@@ -778,7 +778,7 @@ header nav ul {
 
 /* Footer */
 footer {
-    background-color: #E0F7FA; /* Lighter cyan */
+    background-image: linear-gradient(90deg, #7EC9E7, #2B64CB, #A7D0F2);
     text-align: center;
     padding: 20px;
     position: relative;
